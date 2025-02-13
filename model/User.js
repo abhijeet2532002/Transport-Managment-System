@@ -69,6 +69,10 @@ const userSchema = new mongoose.Schema({
     customer: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Customer"
+    },
+    driver: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Driver"
     }
 }, {
     timestamps: true
