@@ -17,6 +17,7 @@
     "jsonwebtoken": "^9.0.2",
     "libphonenumber-js": "^1.11.19",
     "mongoose": "^8.10.0",
-    "nodemon": "^3.1.9"
+    "nodemon": "^3.1.9",
+    "transportbackend": "file:"
   }
 }

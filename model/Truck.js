@@ -29,6 +29,9 @@ const truckSchema = new mongoose.Schema({
         type: String,
         enum: ["available", "in-transit", "maintenance"],
         default: "available"
+    },
+    Order : {
+        type
     }
 }, {
     timestamps: true
