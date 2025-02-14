@@ -57,11 +57,23 @@ const userSchema = new mongoose.Schema({
         ref: "Truck",
         default: null
     }],
-    assignedTruck: {
+    assignedOrder: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Truck",
         default: null
     },
+    booking: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Booking"
+    }],
+    customer: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Customer"
+    },
+    driver: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Driver"
+    }
 }, {
     timestamps: true
 });

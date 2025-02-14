@@ -1,41 +1,52 @@
 import mongoose from "mongoose";
 
-const truckSchema = new mongoose.Schema({
+const truckSchema = new mongoose.Schema(
+  {
     truckNumber: {
-        type: String,
-        required: true,
-        unique: true
+      type: String,
+      required: true,
+      unique: true,
+      trim: true,
+      uppercase: true,
     },
     owner: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        required: true
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: false,
+      default: null,
     },
     driver: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
-        default: null
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      default: null,
     },
     capacity: {
-        type: Number,
-        required: true
-    }, 
+      type: Number,
+      required: true,
+      min: 1,
+      default: 1,
+    },
     truckType: {
-        type: String,
-        enum: ["small", "medium", "heavy"],
-        required: true
+      type: String,
+      enum: ["small", "medium", "heavy"],
+      required: true,
+      lowercase: true,
     },
     status: {
-        type: String,
-        enum: ["available", "in-transit", "maintenance"],
-        default: "available"
+      type: String,
+      enum: ["available", "on-delivery", "maintenance", "unavailable"],
+      default: "available",
+      lowercase: true,
+      default: "available",
     },
-    Order : {
-        type
-    }
-}, {
-    timestamps: true
-});
+    Order: {
+      type,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 
-const Truck = mongoose.model('Truck', truckSchema);
+const Truck = mongoose.model("Truck", truckSchema);
 export default Truck;
