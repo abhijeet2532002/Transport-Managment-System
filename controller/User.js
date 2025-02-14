@@ -44,10 +44,6 @@ export default class User {
             const isPasswordValid = await comparePassword(password, user.password);
             if (!isPasswordValid) return res.status(401).json({ message: "Invalid credentials" });
 
-
-            if (req.headers.cookie)
-                return res.status(200).json({ "Avaiable Token": req.headers.cookie.split('=')[1] });
-
             JsonWebToken.verify(user.authToken, process.env.SECRET_KEY, async (err) => {
                 if (err) {
                     user.authToken = JsonWebToken.sign({

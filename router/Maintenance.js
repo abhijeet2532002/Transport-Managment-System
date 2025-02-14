@@ -11,7 +11,6 @@ const {
 
 router.post("/create", create);
 router.get("/truck/:truckNo", getByTruckNo);
-router.get("/list", listOfAllTrucks);
-router.put("/modify/:id", updateMaintenanceStatus);
+router.get("/list", listOfAllTrucks)
 
 export default router;

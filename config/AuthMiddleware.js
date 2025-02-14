@@ -6,13 +6,15 @@ dotenv.config();
 
 export default class AuthMiddleware {
     Auth = (req, res, next) => {
-        const token = req.headers.cookie.split('=')[1] || req.headers.Authorization.split(' ')[1];
+        console.log(req?.headers)
+        const token = req.headers?.cookie?.split('=')[1] || req?.headers?.Authorization?.split(' ')[1] || req?.headers?.authorization?.split(' ')[1];
 
         if (!token) {
             return res.status(401).send('Access denied.  Please login first ......');
         }
         try {
             const decoded = jwt.verify(token, process.env.SECRET_KEY);
+            req.user = decoded;
             next();
         } catch (err) {
             res.status(400).send('Invalid token.');

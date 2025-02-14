@@ -13,46 +13,16 @@ const orderSchema = new mongoose.Schema({
     },
     driver: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User",
+        ref: "Driver",
         default: null
     },
     pickupLocation: {
-        address: {
-            type:
-                String,
-            required: true
-        },
-        coordinates: {
-            lat: {
-                type:
-                    Number,
-                required: true
-            },
-            lng: {
-                type:
-                    Number,
-                required: true
-            }
-        }
+        type: String,
+        required: true
     },
     dropoffLocation: {
-        address: {
-            type:
-                String,
-            required: true
-        },
-        coordinates: {
-            lat: {
-                type:
-                    Number,
-                required: true
-            },
-            lng: {
-                type:
-                    Number,
-                required: true
-            }
-        }
+        type: String,
+        required: true
     },
     bookingStatus: {
         type: String,

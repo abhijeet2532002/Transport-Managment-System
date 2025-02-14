@@ -11,11 +11,11 @@ const {
     updateFuelEntry
 } = new Fuel();
 
-router.post("/create", create(req, res));
-router.get("/getById/:id", getById(req, res));
-router.get("/listOfFuel", listOfFuel(req, res));
-router.get("/driver/:truckNumber", getByTruckNo(req, res));
-router.put("/updateFuel/:id", updateFuelEntry(req, res));
-router.get("/date/:date", getByDate(req, res));
+router.post("/create", create);
+router.get("/getById/:id", getById);
+router.get("/listOfFuel", listOfFuel);
+router.get("/driver/:truckNumber", getByTruckNo);
+router.put("/updateFuel/:id", updateFuelEntry);
+router.get("/date/:date", getByDate);
 
 export default router;

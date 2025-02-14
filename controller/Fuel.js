@@ -13,8 +13,7 @@ export default class FuelController {
             const driver = await Driver.findById(driver_id);
             if (!driver) return res.status(404).json({ message: "Driver not found" });
 
-            const fuelEntry = new FuelDB.create({ ...req.body });
-            await fuelEntry.save();
+            const fuelEntry = await FuelDB.create({ ...req.body });
 
             res.status(201).json(fuelEntry);
         } catch (error) {

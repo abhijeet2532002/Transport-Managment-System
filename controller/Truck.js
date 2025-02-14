@@ -4,6 +4,8 @@ import UserDB from '../model/User.js';
 export default class Truck {
     async registerTruck(req, res) {
         try {
+            console.log(req.body);
+
             // Find user by ID
             const user = await UserDB.findById(req.user.userId);
             if (!user) {
@@ -54,9 +56,6 @@ export default class Truck {
 
     async getAllTrucks(req, res) {
         try {
-            if (req.user.userRole !== "admin")
-                return res.status(403).json({ message: "Invalid user" });
-
             const truckInfo = await TruckDB.find().populate("owner", "_id userName phone");
 
             return res.status(200).json(truckInfo.length ? truckInfo : { message: "No trucks found" });

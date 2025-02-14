@@ -22,15 +22,21 @@ export default class Driver {
 
     async getDriverByLicenseNumber(req, res) {
         try {
-            if (req.user.userRole !== "admin" && req.user.userRole !== "driver") {
-                return res.status(403).json({ message: "Unauthorized user" });
-            }
-
             const { licenseNumber } = req.params;
             const driver = await DriverDB.findOne({ license_number: licenseNumber });
+
             if (!driver) {
                 return res.status(404).json({ message: "Driver not found" });
             }
+
+            // Ensure driver.user_id exists before converting to string
+            if (
+                req.user.userRole !== "admin" &&
+                req.user.userId.toString() !== driver.user_id.toString()
+            ) {
+                return res.status(403).json({ message: "Unauthorized user" });
+            }
+
             res.status(200).json(driver);
         } catch (error) {
             res.status(500).json({ message: "Error fetching driver", error: error.message });
@@ -57,15 +63,19 @@ export default class Driver {
     async deleteDriver(req, res) {
         try {
             const { id } = req.params;
+
             const deletedDriver = await DriverDB.findByIdAndDelete(id);
+
             if (!deletedDriver) {
                 return res.status(404).json({ message: "Driver not found" });
             }
+
             res.status(200).json({ message: "Driver deleted successfully" });
         } catch (error) {
             res.status(500).json({ message: "Error deleting driver", error: error.message });
         }
     }
+
 
     async listDrivers(req, res) {
         try {
