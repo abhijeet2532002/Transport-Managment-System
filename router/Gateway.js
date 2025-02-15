@@ -12,7 +12,7 @@ const router = express.Router();
 const { Auth } = new Middleware();
 
 router.use("/user", User);
-router.use("/truck", Auth, Truck);
+router.use("/truck", Truck);
 router.use("/order", Auth, Order);
 router.use("/fuel", Auth, Fuel);
 router.use("/payment", Auth, Payment);

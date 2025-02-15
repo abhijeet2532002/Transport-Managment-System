@@ -37,6 +37,10 @@ const truckSchema = new mongoose.Schema({
         default: "available"
     },
 
+    location: {
+        type: String,
+        required: true
+    },
     // NEW FIELD: To track truck assignment
     assignedOrder: {
         type: mongoose.Schema.Types.ObjectId,

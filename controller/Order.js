@@ -6,6 +6,8 @@ import DriverDB from '../model/Driver.js'
 export default class OrderController {
     async createOrder(req, res) {
         try {
+            console.log(req.body);
+
             const { customer, truck, pickupLocation, dropoffLocation, totalCost } = req.body;
 
             if (!customer || !truck || !pickupLocation || !dropoffLocation || !totalCost) {

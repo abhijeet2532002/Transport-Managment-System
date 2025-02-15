@@ -6,6 +6,8 @@ dotenv.config();
 
 export default class AuthMiddleware {
     Auth = (req, res, next) => {
+        console.log(req);
+
         console.log(req?.headers)
         const token = req.headers?.cookie?.split('=')[1] || req?.headers?.Authorization?.split(' ')[1] || req?.headers?.authorization?.split(' ')[1];
 
